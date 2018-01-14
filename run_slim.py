@@ -1,6 +1,6 @@
 import tensorflow as tf  
 import tensorflow
-import tf_test
+import read_tfrecord
 import tensorflow.contrib.slim as slim  
 tf.reset_default_graph() 
 #BATCH_SIZE = 3  
@@ -12,7 +12,7 @@ if not tf.gfile.Exists(train_log_dir):
 
 with tf.Graph().as_default():
   # Set up the data loading:
-  images, labels = tf_test.read_and_decode("train.tfrecords")
+  images, labels = read_tfrecord.read_and_decode("train.tfrecords")
   img_batch, label_batch = tf.train.shuffle_batch([images, labels],
                                                 batch_size=3, capacity=2000,
                                                 min_after_dequeue=1000)
